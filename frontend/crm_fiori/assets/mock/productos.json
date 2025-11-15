@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Tomate",
+        "precio": 3.5,
+        "stock": 5,
+        "categoria": "Verduras"
+    },
+    {
+        "id": 2,
+        "nombre": "Cebolla",
+        "precio": 2.8,
+        "stock": 8,
+        "categoria": "Verduras"
+    },
+    {
+        "id": 3,
+        "nombre": "Papa",
+        "precio": 2.0,
+        "stock": 45,
+        "categoria": "Tubérculos"
+    },
+    {
+        "id": 4,
+        "nombre": "Zanahoria",
+        "precio": 2.5,
+        "stock": 30,
+        "categoria": "Verduras"
+    },
+    {
+        "id": 5,
+        "nombre": "Choclo",
+        "precio": 1.5,
+        "stock": 20,
+        "categoria": "Verduras"
+    }
+]
