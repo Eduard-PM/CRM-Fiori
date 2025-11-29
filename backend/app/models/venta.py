@@ -13,3 +13,10 @@ class Venta(Base):
 
     cliente = relationship("Cliente", back_populates="ventas")
     detalles = relationship("DetalleVenta", back_populates="venta")
+
+detalles = relationship(
+    "DetalleVenta",
+    back_populates="venta",
+    cascade="all, delete-orphan",
+    lazy="selectin"
+)

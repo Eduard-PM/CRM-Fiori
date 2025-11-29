@@ -14,3 +14,6 @@ class DetalleVenta(Base):
 
     venta = relationship("Venta", back_populates="detalles")
     producto = relationship("Producto", back_populates="detalle_ventas")
+
+venta = relationship("Venta", back_populates="detalles", lazy="selectin")
+producto = relationship("Producto", back_populates="detalle_ventas", lazy="selectin")
