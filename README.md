@@ -205,7 +205,7 @@
 # bash
 
 # Copiar código
-
+ 8
 # uvicorn app.main:app --reload
 
 # Backend disponible en:

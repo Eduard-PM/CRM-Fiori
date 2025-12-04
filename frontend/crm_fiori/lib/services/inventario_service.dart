@@ -5,8 +5,11 @@ import '../models/producto.dart';
 class InventarioService {
   final String baseUrl = "http://127.0.0.1:8000";
 
+  // ============================================================
+  // LISTAR PRODUCTOS
+  // ============================================================
   Future<List<Producto>> obtenerProductos(String token) async {
-    final url = Uri.parse("$baseUrl/inventario");
+    final url = Uri.parse("$baseUrl/productos/");
 
     final resp = await http.get(
       url,
@@ -16,13 +19,13 @@ class InventarioService {
     if (resp.statusCode != 200) return [];
 
     final List data = jsonDecode(resp.body);
+
     return data.map((e) => Producto.fromJson(e)).toList();
   }
 
   // ============================================================
   // CREAR PRODUCTO
   // ============================================================
-
   Future<Producto?> crearProducto(
     String token, {
     required String nombre,
@@ -30,7 +33,7 @@ class InventarioService {
     required double stock,
     required String categoria,
   }) async {
-    final url = Uri.parse("$baseUrl/inventario");
+    final url = Uri.parse("$baseUrl/productos/");
 
     final res = await http.post(
       url,
@@ -40,9 +43,10 @@ class InventarioService {
       },
       body: jsonEncode({
         "nombre": nombre,
-        "precio": precio,
-        "stock": stock,
         "categoria": categoria,
+        "precio_unitario": precio,
+        "stock_actual": stock,
+        "stock_minimo": 5,
       }),
     );
 
@@ -56,17 +60,16 @@ class InventarioService {
   // ============================================================
   // ACTUALIZAR STOCK
   // ============================================================
-
   Future<bool> actualizarStock(String token, int id, double nuevoStock) async {
-    final url = Uri.parse("$baseUrl/inventario/$id/stock");
+    final url = Uri.parse("$baseUrl/productos/$id");
 
     final resp = await http.put(
       url,
-      body: jsonEncode({"stock": nuevoStock}),
       headers: {
-        "Content-Type": "application/json",
         "Authorization": "Bearer $token",
+        "Content-Type": "application/json",
       },
+      body: jsonEncode({"stock_actual": nuevoStock}),
     );
 
     return resp.statusCode == 200;
